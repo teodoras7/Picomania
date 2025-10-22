@@ -1,0 +1,147 @@
+def play_simon_says():
+    from picographics import PicoGraphics, DISPLAY_PICO_EXPLORER
+    from time import sleep
+    from machine import Pin, PWM
+    import random
+    import sys
+
+    pwm = PWM(Pin(2))
+    pwm.duty_u16(0)
+    def tone(freq_hz, duty=32768):
+        pwm.freq(freq_hz)
+        pwm.duty_u16(duty)
+
+    display = PicoGraphics(display=DISPLAY_PICO_EXPLORER)
+    W, H = display.get_bounds()
+    bg = display.create_pen(0, 0, 0)
+    green = display.create_pen(0, 200, 0)
+    blue = display.create_pen(0, 120, 255)
+    red = display.create_pen(255, 0, 0)
+    yellow = display.create_pen(255, 220, 0)
+    white = display.create_pen(255, 255, 255)
+
+    A= Pin(12, Pin.IN, Pin.PULL_UP)
+    B= Pin(13, Pin.IN, Pin.PULL_UP)
+    X= Pin(14, Pin.IN, Pin.PULL_UP)
+    Y= Pin(15, Pin.IN, Pin.PULL_UP)
+
+    display.set_pen(bg); display.clear(); sleep(0.01)
+
+    display.set_pen(green); display.rectangle(0, 0, 120, 120); tone(261); display.set_pen(white); display.text("C4", 25, 40, scale=7); display.update(); sleep(0.5)
+    display.set_pen(blue); display.rectangle(0, 120, 120, 120); tone(294); display.set_pen(white); display.text("D4", 25, 160, scale=7); display.update(); sleep(0.5)
+    display.set_pen(red); display.rectangle(120, 0, 120, 120); tone(329); display.set_pen(white); display.text("E4", 145, 40, scale=7); display.update(); sleep(0.5)
+    display.set_pen(yellow); display.rectangle(120, 120, 120, 120); tone(349); display.set_pen(white); display.text("F4", 145, 160, scale=7); display.update(); sleep(0.5)
+
+    pwm.duty_u16(0); sleep(1.5)
+    display.set_pen(bg); display.clear()
+    display.set_pen(white); display.text("Get ready", 30, 100, scale=4); display.update(); sleep(2.5)
+    display.set_pen(bg); display.clear()
+    display.set_pen(white); display.text("Start", 40, 100, scale=6); display.update(); sleep(1)
+    display.set_pen(bg); display.clear(); display.update(); sleep(0.01)
+
+    x=[random.randint(1, 4) for _ in range(5)]
+
+    def loose():
+        display.set_pen(white); display.rectangle(int(0), int(0), int(240), int(240)); tone(988)
+        display.update()
+        sleep(2)
+        pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+        display.set_pen(white); display.text("Game over :(", 5, 100, scale=4); display.update(); sleep(2)
+
+    j=1
+    ok=1
+    while j<6 and ok:
+        i=0    
+        while i<j:
+            if x[i] == 1:
+                display.set_pen(green); display.rectangle(int(0), int(0), int(240), int(240)); tone(261)
+            elif x[i] == 2:
+                display.set_pen(blue); display.rectangle(int(0), int(0), int(240), int(240)); tone (294)
+            elif x[i] == 3:
+                display.set_pen(red); display.rectangle(int(0), int(0), int(240), int(240)); tone (329)
+            elif x[i] == 4:
+                display.set_pen(yellow); display.rectangle(int(0), int(0), int(240), int(240)); tone (349)
+            display.update()
+            sleep(1)
+            pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+            sleep(0.01)
+            display.set_pen(bg); display.clear()
+            i += 1
+        i=0
+        while i<j:
+            if A.value():
+                pwm.duty_u16(0)
+            elif x[i] == 1:
+                display.set_pen(green); display.rectangle(int(0), int(0), int(240), int(240)); tone(261)
+                display.update()
+                sleep(0.3)
+                i += 1
+                pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+                sleep(0.01)
+                display.set_pen(bg); display.clear()
+            else :
+                loose(); ok=0; break
+            if B.value():
+                pwm.duty_u16(0)
+            elif x[i] == 2:
+                display.set_pen(blue); display.rectangle(int(0), int(0), int(240), int(240)); tone (294)
+                display.update()
+                sleep(0.3)
+                i += 1
+                pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+                sleep(0.01)
+                display.set_pen(bg); display.clear()
+            else :
+                loose(); ok=0; break   
+            if X.value():
+                pwm.duty_u16(0)
+            elif x[i] == 3:
+                display.set_pen(red); display.rectangle(int(0), int(0), int(240), int(240)); tone (329)
+                display.update()
+                sleep(0.3)
+                i += 1
+                pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+                sleep(0.01)
+                display.set_pen(bg); display.clear()
+            else :
+                loose(); ok=0; break  
+            if Y.value():
+                pwm.duty_u16(0)
+            elif x[i] == 4:
+                display.set_pen(yellow); display.rectangle(int(0), int(0), int(240), int(240)); tone (349)
+                display.update()
+                sleep(0.3)
+                i += 1
+                pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+                sleep(0.01)
+                display.set_pen(bg); display.clear()
+            else :
+                loose(); ok=0; break
+        if ok:
+            pwm.duty_u16(0); display.set_pen(bg); display.rectangle(int(0), int(0), int(240), int(240)); display.update()
+            sleep(1)
+            display.set_pen(bg); display.clear()
+            j += 1
+    text = "Congratulations!"
+    text_width = display.measure_text(text, 2)
+    z = (W - text_width) // 2
+    y = H // 2  
+    if ok==1:
+        display.set_pen(white); display.text(text, z, y, W, 2)
+        display.update(); sleep(0.01)
+    i=0
+    while i<5 and ok:
+        if x[i] == 1:
+            tone(261)
+            sleep(0.3)
+        elif x[i] == 2:
+            tone(294)
+            sleep(0.3)
+        elif x[i] == 3:
+            tone(329)
+            sleep(0.3)
+        else :
+            tone (349)
+            sleep(0.3)
+        i += 1
+        pwm.duty_u16(0); sleep(0.01)
