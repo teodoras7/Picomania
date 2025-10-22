@@ -1,9 +1,6 @@
-
-
 # Picomania
 
-Picomania este o platformă interactivă care conține 4 jocuri, fiecare dintre ele fiind implementat cu muzică și culori, iar 3 dintre ele având câte 2 variante de a fi jucate.
-Platforma conține un meniu complex care permite jucătorului să aleagă și să realeagă jocul dorit. Mai multe detalii sunt în secțiunea: **"Conectarea jocurilor"**.
+Picomania este o platformă interactivă care conține 4 jocuri, fiecare dintre ele fiind implementat cu muzică și culori, iar 3 dintre ele având câte 2 variante de a fi jucate. Platforma conține un meniu complex care permite jucătorului să aleagă și să realeagă jocul dorit. Mai multe detalii sunt în secțiunea: **"Conectarea jocurilor"**.
 
 ## Elemente utilizate:
 
@@ -68,11 +65,12 @@ Scopul acestui joc este ca jucătorul să prindă cât mai multe mere în coș. 
 ### Variante:
 
 #### Butoanele B și Y:
-Jucătorul folosește butoanele B si Y pentru a muta coșul.
+
+Jucătorul folosește butoanele B și Y pentru a muta coșul.
 
 #### Potențiometru:
 
-Jucătorul folosește potențiometrul pentru a muta coșul. La început de joc, potențiometrul trebuie setat cât mai la stânga pentru a avea coșul în colțul corect.
+Jucătorul folosește potențiometrul pentru a muta coșul. La începutul jocului, potențiometrul trebuie setat cât mai la stânga pentru a avea coșul în colțul corect.
 
 ---
 
@@ -89,3 +87,32 @@ Acest joc conține regulile obișnuite ale cunoscutului joc **Blackjack**. Jucă
 Pe lângă acest meniu complex, după terminarea fiecărui joc și afișarea rezultatului, jucătorul are la dispoziție 10 secunde să aleagă dacă mai vrea să se joace încă o dată același joc (ajunge în meniul jocului sau începe jocul direct în cazul „Blackjack”) sau dacă vrea alt joc (ajunge în meniul principal). După cele 10 secunde, codul se oprește din rulare și rămâne pe fundal scorul ultimului joc jucat.
 
 ---
+
+## Rularea codului
+
+Pentru a juca, trebuie să rulezi fișierul **`jocuri.py`**. Acesta conține logica principală a jocurilor. În plus, pentru a asigura funcționarea completă a platformei, se vor utiliza și următoarele fișiere de referință:
+
+* **`jocuri.py`**: Contine logica jocurilor și meniu;
+* **`be_fast.py`**: Codul pentru jocul **Be Fast**;
+* **`be_fast_1v1.py`**: Codul pentru varianta 1v1 a jocului **Be Fast**;
+* **`black_jack.py`**: Codul pentru jocul **Blackjack**;
+* **`catch_apples.py`**: Codul pentru varianta cu butoanele B si Y a jocului **Catch Apples**;
+* **`catch_apples2.py`**: Codul pentru varianta cu potențiometru a jocului **Catch Apples**;
+* **`simon_says.py`**: Codul pentru varianta cu 5 niveluri a jocului **Simon Says**;
+* **`simon_says_loop.py`**: Codul pentru varianta infinită a jocului **Simon Says**.
+
+### Cum să rulezi proiectul
+
+1. Asigură-te că ai toate fișierele într-un singur director.
+2. Deschide terminalul în directorul proiectului.
+3. Rulează fișierul principal cu comanda:
+
+```bash
+python jocuri.py
+```
+
+Asigură-te că ai configurat corect Raspberry Pi Pico și conexiunile hardware necesare.
+
+---
+
+
