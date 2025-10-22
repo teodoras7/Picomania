@@ -111,7 +111,13 @@ Pentru a juca, trebuie să rulezi fișierul **`jocuri.py`**. Acesta conține log
 ```bash
 python jocuri.py
 ```
+### Cum să golești ecranul
 
+1. Rulează fișierul specific cu comanda:
+
+```bash
+python black_display.py
+```
 Asigură-te că ai configurat corect Raspberry Pi Pico și conexiunile hardware necesare.
 
 ---
