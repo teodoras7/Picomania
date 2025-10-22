@@ -95,6 +95,7 @@ Pentru a juca, trebuie să rulezi fișierul **`jocuri.py`**. Acesta conține log
 * **`jocuri.py`**: Contine logica jocurilor și meniu;
 * **`be_fast.py`**: Codul pentru jocul **Be Fast**;
 * **`be_fast_1v1.py`**: Codul pentru varianta 1v1 a jocului **Be Fast**;
+* **`black_display.py`**: Fișierul care golește ecranul în cazul în care a rămas ceva pe el de dinainte;
 * **`black_jack.py`**: Codul pentru jocul **Blackjack**;
 * **`catch_apples.py`**: Codul pentru varianta cu butoanele B si Y a jocului **Catch Apples**;
 * **`catch_apples2.py`**: Codul pentru varianta cu potențiometru a jocului **Catch Apples**;
