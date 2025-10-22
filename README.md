@@ -86,6 +86,6 @@ Acest joc conține regulile obișnuite ale cunoscutului joc **Blackjack**. Jucă
 
 ## Conectarea jocurilor
 
-Pe lângă acest meniu complex, după terminarea fiecărui joc și afișarea rezultatului, jucătorul are la dispoziție 10 secunde să aleagă dacă mai vrea să se joace încă o dată același joc (ajunge în al doilea meniu sau începe jocul direct în cazul „Blackjack”) sau dacă vrea alt joc și ajunge în meniul principal. După cele 10 secunde, codul se oprește din rulare și rămâne pe fundal scorul ultimului joc jucat.
+Pe lângă acest meniu complex, după terminarea fiecărui joc și afișarea rezultatului, jucătorul are la dispoziție 10 secunde să aleagă dacă mai vrea să se joace încă o dată același joc (ajunge în meniul jocului sau începe jocul direct în cazul „Blackjack”) sau dacă vrea alt joc (ajunge în meniul principal). După cele 10 secunde, codul se oprește din rulare și rămâne pe fundal scorul ultimului joc jucat.
 
 ---
